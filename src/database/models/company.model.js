@@ -26,6 +26,7 @@ const CompanySchema = new Schema({
         type: String,   //todo convert year
         required: true
     },
+
     //whether intern or full-time placement
     recruitmentType: {
         type: String
@@ -49,7 +50,7 @@ const CompanySchema = new Schema({
         type : Object
     },
     minCgpa : {
-        type : String // todo convert float
+        type : String   //todo convert float
     },
         //10th percent
     minMetricPercent : {
@@ -77,7 +78,7 @@ const CompanySchema = new Schema({
         ref: "Student"
     }
 });
-// create company model
-const studentModel = mongoose.model("Student", StudentSchema);
-module.exports = studentModel;
 
+// create company model
+const companyModel = mongoose.model("Company", CompanySchema);
+module.exports = companyModel;
