@@ -1,7 +1,7 @@
 module.exports = {
   view: require("./view.controller"),
+  create: require("./create.controller"),
 
   // TODO task for now
-  // create: require("./create.controller"),
   // delete: require("./delete.controller"),
 };
