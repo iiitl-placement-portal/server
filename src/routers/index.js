@@ -2,6 +2,8 @@ module.exports = {
   // test route
   test: require("./test.router"),
 
+  login: require("../controllers/login.controller"),
+
   // TODO in actual app
   // dashboard: require("./dashboard.router")
   // jobs-applied: require("./jobs-applied.router")

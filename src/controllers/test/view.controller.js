@@ -1,4 +1,4 @@
-const TestModel = require("../../database/models/test.model");
+const TestModel = require("../../database/models/logintest.model");
 
 module.exports = {
   view: async () => {
