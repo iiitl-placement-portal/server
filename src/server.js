@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const express = require("express");
 const passport = require("passport");
 // ------------------------------------------------------------------------
-// 
+//
 // import required created files
 const routes = require("./routers");
 
@@ -59,7 +59,7 @@ app.use("/test", passport.authenticate("jwt", { session: false }), routes.test);
 
 // Handle errors.
 app.use(function (err, req, res, next) {
-  console.error(err);
+  console.error("Route failure", err);
   res.status(err.status || 500);
   res.json({ error: err });
 });
