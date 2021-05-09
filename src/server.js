@@ -10,6 +10,10 @@ const passport = require("passport");
 // import required created files
 const routes = require("./routers");
 
+// to be removed later
+const tempStudentData = require("./utils/tempStudentData");
+const announcementModel = require("./database/models/announcement.model");
+
 // initialize express app
 const app = express();
 
@@ -51,6 +55,19 @@ app.post("/login", routes.login);
 // test route
 app.use("/test", passport.authenticate("jwt", { session: false }), routes.test);
 
+app.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json(tempStudentData);
+  }
+);
+
+app.get("/announcement", async (req, res) => {
+  const data = await announcementModel.find({});
+  res.status(200);
+  res.json(data);
+});
 // TODO in actual app
 // app.use("/dashboard", routes.dashboard);
 // app.use("/jobs-applied", routes.jobs-applied);
@@ -59,7 +76,7 @@ app.use("/test", passport.authenticate("jwt", { session: false }), routes.test);
 
 // Handle errors.
 app.use(function (err, req, res, next) {
-  console.error("Route failure", err);
+  console.error(err.name, err.message);
   res.status(err.status || 500);
   res.json({ error: err });
 });

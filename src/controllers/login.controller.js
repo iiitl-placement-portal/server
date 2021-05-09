@@ -7,22 +7,22 @@ module.exports = async (req, res, next) => {
     try {
       if (err) {
         console.log("Some error occoured in authentication.");
-        return next(err);
+        throw new Error(err);
       }
       if (!user) {
-        console.log("User couldn't be found for authentication.");
-        return new Error("User couldn't be found for authentication.");
+        // console.log("User couldn't be found for authentication.");
+        throw new Error("User couldn't be found for authentication.");
       }
 
       req.login(user, { session: false }, async (error) => {
         if (error) {
           console.log("User couldn't be logged in.");
-          return next(error);
+          throw new Error(error);
         }
 
         const body = { _id: user._id, email: user.email };
         const token = jwt.sign({ user: body }, process.env.SECRET, {
-          expiresIn: 60,
+          expiresIn: "1h",
         });
 
         return res.json({ token });
