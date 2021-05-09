@@ -9,6 +9,7 @@ const passport = require("passport");
 //
 // import required created files
 const routes = require("./routers");
+const StudentModel= require("./database/models/test.model");
 
 // initialize express app
 const app = express();
@@ -43,7 +44,18 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("nothing to send here.");
-});
+  // For my reference: Karan  <IGNORE>
+  // const studentModel= new StudentModel({
+  //   fullName:'Karan'
+  // });
+  // studentModel.save()
+  //   .then((result)=>{
+  //     res.send(result)
+  //   })
+  //   .catch((e)=>{
+  //     console.log(e);
+  //   });
+})
 
 // login the user
 app.post("/login", routes.login);
