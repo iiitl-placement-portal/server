@@ -10,9 +10,9 @@ const CompanySchema = new Schema({
     companyWebsite: {
         type: String,
     },
-    industrySector: {
-        type: String,
-    },
+//     industrySector: {
+//         type: String,
+//     },
     aboutCompany: {
         type: String,
     },
@@ -53,13 +53,13 @@ const CompanySchema = new Schema({
         type : String   //todo convert float
     },
         //10th percent
-    minMetricPercent : {
-        type : String
-    },
-        //12th percent
-    minSeniorpercent : {
-        type : String
-    },
+//     minMetricPercent : {
+//         type : String
+//     },
+//         //12th percent
+//     minSeniorpercent : {
+//         type : String
+//     },
     
     //Package
     package : {
