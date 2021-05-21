@@ -46,16 +46,17 @@ const CompanySchema = new Schema({
     },
 
     //Student Eligibility
-    eligibility : {
-        type : Object
-    },
+//     eligibility : {
+//         type : Object
+//     },
     minCgpa : {
         type : String   //todo convert float
     },
-        //10th percent
-//     minMetricPercent : {
-//         type : String
-//     },
+    
+       // Max Backlogs Allowed
+    maxBacklogsAllowed : {
+        type : String
+    },
 //         //12th percent
 //     minSeniorpercent : {
 //         type : String
