@@ -80,5 +80,8 @@ const CompanySchema = new Schema({
 });
 
 // create company model
-const companyModel = mongoose.model("Company", CompanySchema);
+const companyModel = mongoose.model("Companie", CompanySchema);
+// git commit -m "Change collection name from 'Company' to 'Companie'" -m "mongoose capitalises the schema name.
+// Hence 'Companie' will become 'Companies' while creating the collection"
+
 module.exports = companyModel;
