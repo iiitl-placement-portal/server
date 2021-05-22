@@ -9,11 +9,12 @@ const passport = require("passport");
 //
 // import required created files
 const routes = require("./routers");
-const StudentModel= require("./database/models/test.model");
+const StudentModel = require("./database/models/test.model");
 
 // to be removed later
 const tempStudentData = require("./utils/tempStudentData");
 const announcementModel = require("./database/models/announcement.model");
+const uploadJsonData = require("./utils/uploadJsonData");
 
 // initialize express app
 const app = express();
@@ -59,7 +60,7 @@ app.get("/", (req, res) => {
   //   .catch((e)=>{
   //     console.log(e);
   //   });
-})
+});
 
 // login the user
 app.post("/login", routes.login);
@@ -71,6 +72,7 @@ app.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    // console.log(req);
     res.json(tempStudentData);
   }
 );
@@ -80,6 +82,9 @@ app.get("/announcement", async (req, res) => {
   res.status(200);
   res.json(data);
 });
+
+app.post("/uploadJsonData", uploadJsonData);
+
 // TODO in actual app
 // app.use("/dashboard", routes.dashboard);
 // app.use("/jobs-applied", routes.jobs-applied);

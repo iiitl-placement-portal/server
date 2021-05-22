@@ -41,7 +41,7 @@ const CompanySchema = new Schema({
         type: String
     },
     active:{
-        type: Boolean,
+        type: String,
         default: true
     },
 
@@ -51,6 +51,9 @@ const CompanySchema = new Schema({
     },
     minCgpa : {
         type : String   //todo convert float
+    },
+    maxBacklogsAllowed: {
+        type : String
     },
         //10th percent
 //     minMetricPercent : {

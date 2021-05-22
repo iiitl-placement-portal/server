@@ -24,13 +24,17 @@ const StudentSchema = new Schema({
     urEmail: {
         type: String,
     },
+    password: {
+        type: String,
+        required : true
+    },
     cgpa: {
         type: Number,
         required: true,
     },
-    address: {
-        type: String,
-    },
+    // address: {
+    //     type: String,
+    // },
     city: {
         type: String,
     },
