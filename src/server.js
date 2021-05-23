@@ -9,10 +9,8 @@ const passport = require("passport");
 //
 // import required created files
 const routes = require("./routers");
-const StudentModel = require("./database/models/test.model");
 
 // to be removed later
-const tempStudentData = require("./utils/tempStudentData");
 const announcementModel = require("./database/models/announcement.model");
 const uploadJsonData = require("./utils/uploadJsonData");
 
@@ -71,10 +69,7 @@ app.use("/test", passport.authenticate("jwt", { session: false }), routes.test);
 app.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    // console.log(req);
-    res.json(tempStudentData);
-  }
+  routes.profile
 );
 
 app.get("/announcement", async (req, res) => {
