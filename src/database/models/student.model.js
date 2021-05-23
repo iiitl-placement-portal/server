@@ -22,7 +22,7 @@ const StudentSchema = new Schema({
     required: true,
   },
   // email to contact(generally personal Email)
-  urEmail: {
+  email: {
     type: String,
     unique: true,
   },

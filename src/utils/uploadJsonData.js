@@ -15,7 +15,7 @@ const uploadJsonData = async (req, res, next) => {
       queryOn = "companyName";
     } else if (req.body.type === "student") {
       Model = StudentModel;
-      queryOn = "urEmail";
+      queryOn = "email";
     }
 
     await req.body.data.map(async (entry) => {
