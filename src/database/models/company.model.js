@@ -7,16 +7,19 @@ const CompanySchema = new Schema({
         type: String,
         required: true,
     },
+
     companyWebsite: {
         type: String,
     },
-//     industrySector: {
-//         type: String,
-//     },
+    //     industrySector: {
+    //         type: String,
+    //     },
     aboutCompany: {
         type: String,
     },
 
+    //! Added the following fields in the jobModel
+    //! Will be removed from here at a later stage of development
     //Job Opening
     jobProfile: {
         type: String,
@@ -40,43 +43,43 @@ const CompanySchema = new Schema({
     jobDescription: {
         type: String
     },
-    active:{
+    active: {
         type: String,
         default: true
     },
 
     //Student Eligibility
-    eligibility : {
-        type : Object
+    eligibility: {
+        type: Object
     },
-    minCgpa : {
-        type : String   //todo convert float
+    minCgpa: {
+        type: String   //todo convert float
     },
     maxBacklogsAllowed: {
-        type : String
+        type: String
     },
-        //10th percent
-//     minMetricPercent : {
-//         type : String
-//     },
-//         //12th percent
-//     minSeniorpercent : {
-//         type : String
-//     },
-    
+    //10th percent
+    //     minMetricPercent : {
+    //         type : String
+    //     },
+    //         //12th percent
+    //     minSeniorpercent : {
+    //         type : String
+    //     },
+
     //Package
-    package : {
+    package: {
         type: String
     },
 
     // registration deadline
-    deadlineDate : {
-        type : Date,
-        required : true
+    deadlineDate: {
+        type: Date,
+        required: true
     },
 
     //No. of students applied
-    studentApplied:{
+    studentApplied: {
         type: Schema.Types.ObjectId,
         ref: "Student"
     }
