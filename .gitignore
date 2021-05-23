@@ -3,3 +3,5 @@ node_modules
 
 # ignore confidential credentials
 .env
+
+README.md
