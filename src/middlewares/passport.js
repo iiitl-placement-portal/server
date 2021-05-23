@@ -1,4 +1,4 @@
-const User = require("../database/models/logintest.model");
+const User = require("../database/models/student.model");
 
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
@@ -17,7 +17,7 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ urEmail: email });
 
         if (!user) {
           return done(null, false, { message: "User not found" });
