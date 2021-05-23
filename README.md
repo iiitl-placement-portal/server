@@ -9,7 +9,13 @@ SECRET = "iamgonnakeepthisverysecret"
 MONGO_URI = mongodb+srv://<username>:<password>@placement-portal.8qvst.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 ```
 
-Replace \<username\> with your mongodb username and \<password\> with your password
+Replace \<username\> with your mongodb username, \<password\> with your password and replace **myFirstDatabase** with **placement_test**
+
+``` text
+password: forgotpassword
+```
+
+Now run
 
 ``` bash
 npm run dev
