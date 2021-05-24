@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const CompanyModel = require("./company.model");
 
 const jobPostingSchema = new Schema({
 	timestamp: {
@@ -33,9 +34,9 @@ const jobPostingSchema = new Schema({
 	},
 
 	//Student Eligibility
-	eligibility: {
-		type: Object
-	},
+	eligibility: [{
+		type: Number
+	}],
 	onlyForFemales: {
 		type: String
 	},
@@ -56,7 +57,11 @@ const jobPostingSchema = new Schema({
 		type: Date,
 		required: true
 	},
-
+	jobId: {
+		type: String,
+		required: true,
+		unique: true
+	},
 	// Array of Students applied
 	//! Populate with details of students
 	//? Lookup how to post references
@@ -65,6 +70,19 @@ const jobPostingSchema = new Schema({
 		ref: "Student"
 	}]
 });
+
+jobPostingSchema.pre("findOneAndUpdate", async function () {
+	//code for auto increment of counter in jobId
+
+	/*
+	  console.log("pre hook", user);
+	const hash = await bcrypt.hash(user._update.password, 10);
+	//   console.log(hash);
+	user._update.password = hash;
+	//   console.log("pre hook done", user);
+	*/
+});
+
 
 const jobModel = mongoose.model("JobOffer", jobPostingSchema);
 // Collection named JobOffer[s]

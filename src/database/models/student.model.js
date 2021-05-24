@@ -67,10 +67,10 @@ const StudentSchema = new Schema({
 	resumeUrl: {
 		type: String,
 	},
-	registeredCompany: [
+	jobApplied: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: "Companie",
+			ref: "JobOffer",
 		},
 	],
 });

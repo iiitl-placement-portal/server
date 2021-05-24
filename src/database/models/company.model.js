@@ -19,10 +19,10 @@ const CompanySchema = new Schema({
 
 	//TODO: Use array instead of String for one to many relations
 	//TODO: at a later stage of development
-	jobOpenings: {
+	jobOpenings: [{
 		type: Schema.Types.ObjectId,
 		ref: "JobOffer"
-	}
+	}]
 });
 
 // create company model
