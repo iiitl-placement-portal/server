@@ -9,10 +9,11 @@ const passport = require("passport");
 //
 // import required created files
 const routes = require("./routers");
+const uploadJsonData = require("./utils/uploadJsonData");
+const deleteAllData = require("./utils/deleteAllCollection");
 
 // to be removed later
 const announcementModel = require("./database/models/announcement.model");
-const uploadJsonData = require("./utils/uploadJsonData");
 
 // initialize express app
 const app = express();
@@ -79,6 +80,7 @@ app.get("/announcement", async (req, res) => {
 });
 
 app.post("/uploadJsonData", uploadJsonData);
+app.post("/deleteAllData", deleteAllData);
 
 // TODO in actual app
 // app.use("/dashboard", routes.dashboard);
