@@ -36,6 +36,9 @@ const jobPostingSchema = new Schema({
 	eligibility: {
 		type: Object
 	},
+	onlyForFemales: {
+		type: String;
+	},
 	minCgpa: {
 		type: String   //TODO: convert float
 	},
