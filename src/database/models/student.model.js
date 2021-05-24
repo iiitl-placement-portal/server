@@ -7,13 +7,13 @@ const StudentSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	// Gender
-	gender: {
+	//year of passout
+	passoutBatch: {
 		type: String,
 		required: true,
 	},
-	//year of passout
-	passoutBatch: {
+	// Gender
+	gender: {
 		type: String,
 		required: true,
 	},
@@ -39,10 +39,12 @@ const StudentSchema = new Schema({
 		type: Number,
 		required: true,
 	},
-	sgpa: {
-		type: [Number],
-		default: [-1]
-	},
+	sgpa: [
+		{
+			type: Number,
+			default: -1,
+		},
+	],
 	// address: {
 	//     type: String,
 	// },
