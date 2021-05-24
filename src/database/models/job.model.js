@@ -5,13 +5,13 @@ const jobPostingSchema = new Schema({
 	timestamp: {
 		type: Date,
 		required: true,
-		default: Date.now()
+		default: Date.now
 	},
 
 	// Details of the comapany the job is posted by
 	company: {
 		type: Schema.Types.ObjectId,
-		ref: "Company"
+		ref: "Companie"
 	},
 	// Description of the job
 	jobDescription: {
