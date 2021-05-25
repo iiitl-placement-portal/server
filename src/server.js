@@ -14,6 +14,7 @@ const deleteAllData = require("./utils/deleteAllCollection");
 
 // to be removed later
 const announcementModel = require("./database/models/announcement.model");
+const studentModel = require("./database/models/student.model");
 
 // initialize express app
 const app = express();
@@ -79,13 +80,25 @@ app.get("/announcement", async (req, res) => {
   res.json(data);
 });
 
+app.get(
+  "/jobs/all",
+  //TODO: Authenticate
+  //! Returns jobs with StudentsApplied populated.
+  routes.jobs
+)
+
+app.get(
+  "/jobs/applied",
+  passport.authenticate("jwt", { session: false }),
+  routes.job_applied
+);
+
 app.post("/uploadJsonData", uploadJsonData);
 app.post("/deleteAllData", deleteAllData);
 
 // TODO in actual app
 // app.use("/dashboard", routes.dashboard);
-// app.use("/jobs-applied", routes.jobs-applied);
-// app.use("/all-jobs", routes.all-jobs);
+
 // ///////////////////////////    ROUTES END  ////////////////////////////////
 
 // Handle errors.

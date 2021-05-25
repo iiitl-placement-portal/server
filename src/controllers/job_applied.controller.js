@@ -6,5 +6,5 @@ module.exports = async (req, res) => {
     "jobApplied"
   );
   // console.log("student", student);
-  res.send(student);
+  res.send(student.jobApplied);
 };
