@@ -75,6 +75,12 @@ app.get(
 );
 
 app.get(
+  "/jobs/applied",
+  passport.authenticate("jwt", { session: false }),
+  routes.jobsApplied
+);
+
+app.get(
   "/jobs/:id", 
   passport.authenticate("jwt", { session: false }), 
   routes.jobEach
