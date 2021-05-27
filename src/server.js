@@ -46,15 +46,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // //////////////////////////////    ROUTES   ////////////////////////////////
 
-app.get("/", (req, res) => {
-  res.send("nothing to send here.");
-});
+// test route
+// app.use("/test", passport.authenticate("jwt", { session: false }), routes.test);
 
 // login the user
 app.post("/login", routes.login);
-
-// test route
-app.use("/test", passport.authenticate("jwt", { session: false }), routes.test);
 
 app.get(
   "/profile",
@@ -68,36 +64,17 @@ app.get("/announcement", async (req, res) => {
   res.json(data);
 });
 
-app.get(
-  "/jobs/all",
-  passport.authenticate("jwt", { session: false }), 
-  routes.jobsAll
-);
-
-app.get(
-  "/jobs/applied",
-  passport.authenticate("jwt", { session: false }),
-  routes.jobsApplied
-);
-
-app.get(
-  "/jobs/:id", 
-  passport.authenticate("jwt", { session: false }), 
-  routes.jobEach
-)
+app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 
 app.post("/uploadJsonData", uploadJsonData);
 app.post("/deleteAllData", deleteAllData);
 
-// TODO in actual app
-// app.use("/dashboard", routes.dashboard);
-// app.use("/jobs-applied", routes.jobs-applied);
-// app.use("/all-jobs", routes.all-jobs);
 // ///////////////////////////    ROUTES END  ////////////////////////////////
 
 // Handle errors.
-app.use(function (err, req, res, next) {
-  console.error(err.name, err.message);
+app.use(function (req, res, err) {
+  // console.log(req)
+  console.error(">ERROR", err.name, err.message);
   res.status(err.status || 500);
   res.json({ error: err });
 });

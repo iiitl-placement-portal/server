@@ -15,6 +15,6 @@ module.exports = async (req, res, next) => {
     await Model.deleteMany({});
     res.send("Deleted");
   } catch (err) {
-    next(err);
+    next(req, res, err);
   }
 };

@@ -1,6 +1,6 @@
 const CompanyModel = require("../database/models/company.model");
 const StudentModel = require("../database/models/student.model");
-const JobModel= require("../database/models/job.model");
+const JobModel = require("../database/models/job.model");
 
 const uploadJsonData = async (req, res, next) => {
   try {
@@ -17,10 +17,9 @@ const uploadJsonData = async (req, res, next) => {
     } else if (req.body.type === "student") {
       Model = StudentModel;
       queryOn = "email";
-    }
-    else if(req.body.type === "job"){
+    } else if (req.body.type === "job") {
       Model = JobModel;
-      queryOn="jobId";
+      queryOn = "jobId";
     }
 
     await req.body.data.map(async (entry) => {
@@ -28,7 +27,7 @@ const uploadJsonData = async (req, res, next) => {
       // console.log(newEntry);
 
       const query = { [queryOn]: newEntry[queryOn] };
-      console.log("query", query)
+      console.log("query", query);
       const temp = await Model.findOne(query);
       console.log("temp", temp);
 
@@ -39,7 +38,7 @@ const uploadJsonData = async (req, res, next) => {
     });
     res.status(200).send("OK");
   } catch (err) {
-    next(err);
+    next(req, res, err);
   }
 };
 

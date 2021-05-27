@@ -28,7 +28,7 @@ module.exports = async (req, res, next) => {
         return res.json({ token });
       });
     } catch (error) {
-      return next(error);
+      return next(req, res, error);
     }
   })(req, res, next);
 };
