@@ -48,17 +48,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("nothing to send here.");
-  // For my reference: Karan  <IGNORE>
-  // const studentModel= new StudentModel({
-  //   fullName:'Karan'
-  // });
-  // studentModel.save()
-  //   .then((result)=>{
-  //     res.send(result)
-  //   })
-  //   .catch((e)=>{
-  //     console.log(e);
-  //   });
 });
 
 // login the user
@@ -78,6 +67,24 @@ app.get("/announcement", async (req, res) => {
   res.status(200);
   res.json(data);
 });
+
+app.get(
+  "/jobs/all",
+  passport.authenticate("jwt", { session: false }), 
+  routes.jobsAll
+);
+
+app.get(
+  "/jobs/applied",
+  passport.authenticate("jwt", { session: false }),
+  routes.jobsApplied
+);
+
+app.get(
+  "/jobs/:id", 
+  passport.authenticate("jwt", { session: false }), 
+  routes.jobEach
+)
 
 app.post("/uploadJsonData", uploadJsonData);
 app.post("/deleteAllData", deleteAllData);

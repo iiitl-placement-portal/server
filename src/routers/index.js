@@ -4,10 +4,14 @@ module.exports = {
 
   login: require("../controllers/login.controller"),
 
-  profile: require("../controllers/profile.controller"),
+  jobsAll: require("../controllers/jobsAll.controller"),
 
+  jobEach: require("../controllers/jobsEach.controller"),
+  
+  jobsApplied: require("../controllers/jobsApplied.controller"),
+
+  profile: require("../controllers/profile.controller")
+  
   // TODO in actual app
   // dashboard: require("./dashboard.router")
-  // jobs-applied: require("./jobs-applied.router")
-  // all-jobs: require("./all-jobs.router")
 };
