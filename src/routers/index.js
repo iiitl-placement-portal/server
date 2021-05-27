@@ -8,8 +8,10 @@ module.exports = {
 
   profile: require("../controllers/profile.controller"),
 
-  resetPassword: require("../controllers/reset-password.controller")
-  
+  resetPassword: require("../controllers/reset-password.controller"),
+
+  updateContactNo: require("../controllers/updateContactNumber.controller")
+
   // TODO in actual app
   // dashboard: require("./dashboard.router")
 };
