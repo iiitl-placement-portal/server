@@ -7,6 +7,13 @@ const StudentSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	
+	//Enrollment number
+	enrollmentNumber: {
+		type: String,
+		required: true,
+	},
+	
 	//year of passout
 	passoutBatch: {
 		type: String,
