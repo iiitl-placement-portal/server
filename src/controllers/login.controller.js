@@ -6,12 +6,12 @@ module.exports = async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err) {
-        console.log("Some error occoured in authentication.");
+        // console.log(err);
         throw new Error(err);
       }
       if (!user) {
         // console.log("User couldn't be found for authentication.");
-        throw new Error("User couldn't be found for authentication.");
+        throw new Error(info.message);
       }
 
       req.login(user, { session: false }, async (error) => {
@@ -28,7 +28,8 @@ module.exports = async (req, res, next) => {
         return res.json({ token });
       });
     } catch (error) {
-      return next(req, res, error);
+      error.status = 401;
+      return next(error);
     }
   })(req, res, next);
 };

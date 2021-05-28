@@ -72,7 +72,7 @@ app.post("/deleteAllData", deleteAllData);
 // ///////////////////////////    ROUTES END  ////////////////////////////////
 
 // Handle errors.
-app.use(function (req, res, err) {
+app.use(function (err,req, res, next) {
   // console.log(req)
   console.error(">ERROR", err.name, err.message);
   res.status(err.status || 500);

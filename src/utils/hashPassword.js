@@ -8,6 +8,9 @@ const hash = async (plainText) => {
   return hashedText;
 };
 
-hash("123456");
+const args = process.argv[2]
+console.log("string to be hashed:",args);
+
+hash(args);
 
 module.exports = hash;

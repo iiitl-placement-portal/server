@@ -38,7 +38,7 @@ const uploadJsonData = async (req, res, next) => {
     });
     res.status(200).send("OK");
   } catch (err) {
-    next(req, res, err);
+    next(err);
   }
 };
 
