@@ -6,8 +6,12 @@ module.exports = {
 
   jobs: require("./jobs.router"),
 
-  profile: require("../controllers/profile.controller")
-  
+  profile: require("../controllers/profile.controller"),
+
+  resetPassword: require("../controllers/reset-password.controller"),
+
+  updateContactNo: require("../controllers/updateContactNumber.controller")
+
   // TODO in actual app
   // dashboard: require("./dashboard.router")
 };
