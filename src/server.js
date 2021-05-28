@@ -64,6 +64,22 @@ app.get("/announcement", async (req, res) => {
   res.json(data);
 });
 
+/* get request body example
+{ "password":"XYZ"} 
+*/
+app.get("/reset-password",
+  passport.authenticate("jwt", { session: false }),
+  routes.resetPassword
+);
+
+/* get request body example
+{ "contactNo":"123XXXX"} 
+*/
+app.get("/update-phone-number",
+  passport.authenticate("jwt", { session: false }),
+  routes.updateContactNo
+);
+
 app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 
 app.post("/uploadJsonData", uploadJsonData);
