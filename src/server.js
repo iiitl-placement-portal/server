@@ -64,6 +64,11 @@ app.get("/announcement", async (req, res) => {
   res.json(data);
 });
 
+app.get("/notification",
+  passport.authenticate("jwt", { session: false }),
+  routes.notification
+);
+
 /* get request body example
 { "password":"XYZ"} 
 */
@@ -88,7 +93,7 @@ app.post("/deleteAllData", deleteAllData);
 // ///////////////////////////    ROUTES END  ////////////////////////////////
 
 // Handle errors.
-app.use(function (err,req, res, next) {
+app.use(function (err, req, res, next) {
   // console.log(req)
   console.error(">ERROR", err.name, err.message);
   res.status(err.status || 500);

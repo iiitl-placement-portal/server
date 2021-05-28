@@ -73,6 +73,12 @@ const StudentSchema = new Schema({
 			ref: "JobOffer",
 		},
 	],
+	notification: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Notification"
+		}
+	]
 });
 
 // The code in the UserScheme.pre() function is called a pre-hook.
