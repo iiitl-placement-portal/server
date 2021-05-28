@@ -71,6 +71,11 @@ app.get("/announcement", async (req, res) => {
   res.json(data);
 });
 
+app.get("/notification",
+  passport.authenticate("jwt", { session: false }),
+  routes.notification
+);
+
 /* get request body example
 { "password":"XYZ"} 
 */

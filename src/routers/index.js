@@ -10,7 +10,9 @@ module.exports = {
 
   resetPassword: require("../controllers/reset-password.controller"),
 
-  updateContactNo: require("../controllers/updateContactNumber.controller")
+  updateContactNo: require("../controllers/updateContactNumber.controller"),
+
+  notification: require("../controllers/notification.controller")
 
   // TODO in actual app
   // dashboard: require("./dashboard.router")
