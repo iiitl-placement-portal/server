@@ -51,6 +51,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // login the user
 app.post("/login", routes.login);
+app.get(
+  "/verifyToken",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.status(200).send({ isTokenValid: "valid" });
+  }
+);
 
 app.get(
   "/profile",
@@ -67,7 +74,8 @@ app.get("/announcement", async (req, res) => {
 /* get request body example
 { "password":"XYZ"} 
 */
-app.get("/reset-password",
+app.get(
+  "/reset-password",
   passport.authenticate("jwt", { session: false }),
   routes.resetPassword
 );
@@ -75,7 +83,8 @@ app.get("/reset-password",
 /* get request body example
 { "contactNo":"123XXXX"} 
 */
-app.get("/update-phone-number",
+app.get(
+  "/update-phone-number",
   passport.authenticate("jwt", { session: false }),
   routes.updateContactNo
 );
@@ -88,7 +97,7 @@ app.post("/deleteAllData", deleteAllData);
 // ///////////////////////////    ROUTES END  ////////////////////////////////
 
 // Handle errors.
-app.use(function (err,req, res, next) {
+app.use(function (err, req, res, next) {
   // console.log(req)
   console.error(">ERROR", err.name, err.message);
   res.status(err.status || 500);
