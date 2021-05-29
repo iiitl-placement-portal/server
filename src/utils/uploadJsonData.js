@@ -38,7 +38,7 @@ const uploadJsonData = async (req, res, next) => {
       const update = entry;
 
       const result = await Model.findOneAndUpdate(query, update, options);
-      console.log("result", result);
+      // console.log("result", result);
     });
     res.status(200).send("OK");
   } catch (err) {

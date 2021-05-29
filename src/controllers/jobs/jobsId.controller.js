@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     const jobId = req.params.id;
     const job = await JobModel.findById(jobId).populate("company");
     // console.log(job);
-    let data = JobFilter(job);
-    //console.log(data);
-    res.send(data);
+    // let data = JobFilter(job);
+    // console.log(job);
+    res.send(job);
 };

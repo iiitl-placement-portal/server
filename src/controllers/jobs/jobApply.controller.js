@@ -5,8 +5,8 @@ const JobFilter = require("../../utils/jobsEachFilter");
 module.exports = async (req, res) => {
     const jobId = req.params.id;
     const studentId = req.user._id;
-    console.log(studentId);
-    console.log(jobId);
+    // console.log(studentId);
+    // console.log(jobId);
 
     let student = await StudentModel.findById(studentId);
     let job = await JobModel.findById(jobId);

@@ -102,14 +102,14 @@ const StudentSchema = new Schema({
 // The code in the UserScheme.pre() function is called a pre-hook.
 // Before the user information is saved in the database, this function will be called,
 // you will get the plain text password, hash it, and store it
-StudentSchema.pre("findOneAndUpdate", async function () {
-	const user = this;
-	//   console.log("pre hook", user);
-	const hash = await bcrypt.hash(user._update.password, 10);
-	//   console.log(hash);
-	user._update.password = hash;
-	//   console.log("pre hook done", user);
-});
+// StudentSchema.pre("findOneAndUpdate", async function () {
+// 	const user = this;
+// 	//   console.log("pre hook", user);
+// 	const hash = await bcrypt.hash(user._update.password, 10);
+// 	//   console.log(hash);
+// 	user._update.password = hash;
+// 	//   console.log("pre hook done", user);
+// });
 
 // bcrypt hashes the password sent by the user for login
 // and checks if the hashed password stored in the database matches the one sent.
