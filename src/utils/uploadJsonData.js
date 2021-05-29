@@ -31,9 +31,9 @@ const uploadJsonData = async (req, res, next) => {
       // console.log(newEntry);
 
       const query = { [queryOn]: newEntry[queryOn] };
-      console.log("query", query);
-      const temp = await Model.findOne(query);
-      console.log("temp", temp);
+      // console.log("query", query);
+      // const temp = await Model.findOne(query);
+      // console.log("temp", temp);
 
       const update = entry;
 
