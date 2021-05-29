@@ -82,8 +82,19 @@ const StudentSchema = new Schema({
 	],
 	notification: [
 		{
-			type: Schema.Types.ObjectId,
-			ref: "Notification"
+			iat: {
+				type: Date,
+				required: true,
+				default: Date.now
+			},
+			exp: {
+				type: Date,
+				required: true,
+				default: () => Date.now() + 7*24*60*60*1000
+			},
+			message: {
+				type: String
+			}
 		}
 	]
 });
