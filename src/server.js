@@ -14,6 +14,8 @@ const deleteAllData = require("./utils/deleteAllCollection");
 
 // to be removed later
 const announcementModel = require("./database/models/announcement.model");
+const addNewCompany = require("./utils/addNewCompany");
+const addNewJob = require("./utils/addNewJob");
 
 // initialize express app
 const app = express();
@@ -99,6 +101,9 @@ app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 
 app.post("/uploadJsonData", uploadJsonData);
 app.post("/deleteAllData", deleteAllData);
+
+app.post("/addNewCompany", addNewCompany);
+app.post("/addNewJob", addNewJob);
 
 // ///////////////////////////    ROUTES END  ////////////////////////////////
 
