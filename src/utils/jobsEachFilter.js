@@ -8,5 +8,6 @@ module.exports = (job) => {
         companyName: job.company.companyName,
         industrySector: job.company.industrySector,
         package: job.package,
+        isElig: job.isElig
     }
 };

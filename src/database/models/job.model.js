@@ -38,7 +38,7 @@ const jobPostingSchema = new Schema({
 		type: Number
 	}],
 	onlyForFemales: {
-		type: String
+		type: Boolean
 	},
 	minCgpa: {
 		type: String   //TODO: convert float
