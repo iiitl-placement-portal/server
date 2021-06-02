@@ -46,6 +46,10 @@ const jobPostingSchema = new Schema({
 	maxBacklogsAllowed: {
 		type: String
 	},
+	approvedByTPO: {
+		type: Boolean,
+        	required: true
+	},
 
 	//Package
 	package: {
