@@ -74,6 +74,17 @@ const StudentSchema = new Schema({
 	resumeUrl: {
 		type: String,
 	},
+	
+	approvedByTPO: {
+		type: Boolean,
+		default: true,
+        	required: true
+	},
+	eligibility: {
+		type: Boolean,
+		required: true
+	},
+	
 	jobApplied: [
 		{
 			type: Schema.Types.ObjectId,
