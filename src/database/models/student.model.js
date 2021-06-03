@@ -52,6 +52,13 @@ const StudentSchema = new Schema({
 			default: -1,
 		},
 	],
+
+	// for number of backlogs of the student
+	backlogs: {
+		type: Number,
+		default: 0
+	},
+	
 	// address: {
 	//     type: String,
 	// },
@@ -74,6 +81,13 @@ const StudentSchema = new Schema({
 	resumeUrl: {
 		type: String,
 	},
+	
+	approvedByTPO: {
+		type: Boolean,
+		default: true,
+		required: true
+	},
+
 	jobApplied: [
 		{
 			type: Schema.Types.ObjectId,
