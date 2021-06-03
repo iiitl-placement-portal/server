@@ -9,8 +9,8 @@ module.exports = async (req, res) => {
       path: "company",
     },
   });
-  let data = JobFilter(student.jobApplied);
+  // let data = JobFilter(student.jobApplied);
   //console.log(student.jobApplied);
 //   console.log(data);
-  res.send(data);
+  res.send(student.jobApplied);
 };
