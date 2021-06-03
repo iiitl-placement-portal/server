@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
           job.company.companyName
         } on ${DateTime.now().toLocaleString()}`,
       };
-      await student.notification.push(notification);
+      await student.notification.unshift(notification);
       await job.studentsApplied.push(studentId);
     }
 
@@ -40,7 +40,7 @@ module.exports = async (req, res, next) => {
         job.company.companyName
       } on ${DateTime.now().toLocaleString()} failed.`,
     };
-    student.notification.push(notification);
+    student.notification.unshift(notification);
     next(err);
   }
 };
