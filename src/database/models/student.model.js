@@ -110,6 +110,18 @@ const StudentSchema = new Schema({
 				type: String
 			}
 		}
+	],
+	readNotifications : [
+		{
+			iat: {
+				type: Date,
+				required: true,
+				default: Date.now
+			},
+			message: {
+				type: String
+			}
+		}
 	]
 });
 

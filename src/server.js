@@ -16,6 +16,10 @@ const deleteAllData = require("./utils/deleteAllCollection");
 const announcementModel = require("./database/models/announcement.model");
 const addNewCompany = require("./utils/addNewCompany");
 const addNewJob = require("./utils/addNewJob");
+const {
+  markAsRead,
+  deleteNotification,
+} = require("./controllers/notification.controller");
 
 // initialize express app
 const app = express();
@@ -104,6 +108,18 @@ app.post("/deleteAllData", deleteAllData);
 
 app.post("/addNewCompany", addNewCompany);
 app.post("/addNewJob", addNewJob);
+
+app.post(
+  "/markAsRead",
+  passport.authenticate("jwt", { session: false }),
+  markAsRead
+);
+
+app.post(
+  "/deleteNotification",
+  passport.authenticate("jwt", { session: false }),
+  deleteNotification
+);
 
 // ///////////////////////////    ROUTES END  ////////////////////////////////
 
