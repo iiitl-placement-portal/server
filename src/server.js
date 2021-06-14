@@ -101,7 +101,15 @@ app.get(
   routes.updateContactNo
 );
 
-app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
+app.use("/jobs",
+  passport.authenticate("jwt", { session: false }), 
+  routes.jobs);
+
+app.use(
+  "/companies",
+  passport.authenticate("jwt", { session: false }),
+  routes.companies
+);
 
 app.post("/uploadJsonData", uploadJsonData);
 app.post("/deleteAllData", deleteAllData);
