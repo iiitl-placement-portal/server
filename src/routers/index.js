@@ -12,6 +12,8 @@ module.exports = {
 
   updateContactNo: require("../controllers/updateContactNumber.controller"),
 
+  companies: require("./companies.router.js"),
+
   // Notification is handled by /profile
   // notification: require("../controllers/notification.controller")
 
