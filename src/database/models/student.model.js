@@ -94,6 +94,13 @@ const StudentSchema = new Schema({
 			ref: "JobOffer",
 		},
 	],
+	
+	offersReceived: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "JobsReceived",
+		},
+	],
 	notification: [
 		{
 			iat: {
