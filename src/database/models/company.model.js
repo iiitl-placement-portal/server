@@ -16,6 +16,9 @@ const CompanySchema = new Schema({
 	aboutCompany: {
 		type: String,
 	},
+	linkedIn:{
+		type: String,
+	},
 
 	//TODO: Use array instead of String for one to many relations
 	//TODO: at a later stage of development
