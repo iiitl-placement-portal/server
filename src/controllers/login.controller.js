@@ -21,7 +21,14 @@ module.exports = async (req, res, next) => {
         }
 
         const body = { _id: user._id, email: user.email };
-        const token = jwt.sign({ user: body }, process.env.SECRET, {
+
+        let role = "student";
+
+        if (user.email === "placement@iiitl.ac.in") {
+          role = "tpo";
+        }
+
+        const token = jwt.sign({ user: body, role }, process.env.SECRET, {
           expiresIn: "1h",
         });
 
