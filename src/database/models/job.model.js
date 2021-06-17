@@ -14,6 +14,15 @@ const jobPostingSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: "Companie"
 	},
+
+	expectedSkills:{
+		type: String
+	},
+
+	yourRole: {
+		type: String
+	},
+
 	// Description of the job
 	jobDescription: {
 		type: String
@@ -25,6 +34,8 @@ const jobPostingSchema = new Schema({
 	duration: {
 		type: String
 	},
+
+	//location of job
 	postingLocation: {
 		type: String
 	},
