@@ -111,6 +111,12 @@ app.use(
   routes.companies
 );
 
+app.use(
+  "/students",
+  passport.authenticate("jwt", { session: false }),
+  routes.students
+)
+
 app.post("/uploadJsonData", uploadJsonData);
 app.post("/deleteAllData", deleteAllData);
 

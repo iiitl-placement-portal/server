@@ -4,6 +4,7 @@ const companies = require("../controllers/companies/index");
 router.get("/all", companies.all);
 router.get("/:id", companies.id);
 router.get("/:id/jobs", companies.jobs);
+router.get("/:id/jobs/:jid", companies.jobId);
 router.get("/:id/students", companies.students);
 
 module.exports = router;
