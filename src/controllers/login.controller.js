@@ -19,16 +19,15 @@ module.exports = async (req, res, next) => {
           console.log("User couldn't be logged in.");
           throw new Error(error);
         }
-
-        const body = { _id: user._id, email: user.email };
-
+        
         let role = "student";
 
         if (user.email === "placement@iiitl.ac.in") {
           role = "tpo";
         }
+        const body = { _id: user._id, email: user.email, role: role };
 
-        const token = jwt.sign({ user: body, role }, process.env.SECRET, {
+        const token = jwt.sign({ user: body }, process.env.SECRET, {
           expiresIn: "1h",
         });
 
