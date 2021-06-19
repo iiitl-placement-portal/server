@@ -16,6 +16,8 @@ module.exports = {
 
   companies: require("./companies.router.js"),
 
+  students: require("./students.router.js"),
+
   // Notification is handled by /profile
   // notification: require("../controllers/notification.controller")
 

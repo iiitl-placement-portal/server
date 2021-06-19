@@ -115,11 +115,14 @@ app.use(
   routes.companies
 );
 
+app.use(
+  "/students",
+  passport.authenticate("jwt", { session: false }),
+  routes.students
+);
+
 app.post("/uploadJsonData", uploadJsonData);
 app.post("/deleteAllData", deleteAllData);
-
-app.post("/addNewCompany", addNewCompany);
-app.post("/addNewJob", addNewJob);
 
 app.post(
   "/markAsRead",
