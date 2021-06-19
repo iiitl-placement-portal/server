@@ -71,6 +71,12 @@ app.get(
   routes.profile
 );
 
+app.get(
+  "/studentProfile/:id",
+  passport.authenticate("jwt", { session: false }),
+  routes.studentProfile
+);
+
 app.get("/announcement", async (req, res) => {
   const data = await announcementModel.find({});
   res.status(200);
@@ -101,9 +107,7 @@ app.get(
   routes.updateContactNo
 );
 
-app.use("/jobs",
-  passport.authenticate("jwt", { session: false }), 
-  routes.jobs);
+app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 
 app.use(
   "/companies",

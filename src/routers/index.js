@@ -8,6 +8,8 @@ module.exports = {
 
   profile: require("../controllers/profile.controller"),
 
+  studentProfile: require("../controllers/studentProfile.controller"),
+
   resetPassword: require("../controllers/reset-password.controller"),
 
   updateContactNo: require("../controllers/updateContactNumber.controller"),
