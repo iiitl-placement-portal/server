@@ -19,10 +19,10 @@ module.exports = async (req, res, next) => {
           console.log("User couldn't be logged in.");
           throw new Error(error);
         }
-        
+
         let role = "student";
 
-        if (user.email === "placement@iiitl.ac.in") {
+        if (user.email === "placements@iiitl.ac.in") {
           role = "tpo";
         }
         const body = { _id: user._id, email: user.email, role: role };
