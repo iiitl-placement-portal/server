@@ -4,24 +4,19 @@ module.exports = {
 
   login: require("../controllers/login.controller"),
 
-  for_tpo: require("./tpo.router"),
+  jobs: require("./jobs.router"),
 
-  for_student: require("./student.router")
+  profile: require("../controllers/profile.controller"),
 
-  // jobs: require("./jobs.router"),
+  studentProfile: require("../controllers/studentProfile.controller"),
 
-  // profile: require("../controllers/profile.controller"),
+  resetPassword: require("../controllers/reset-password.controller"),
 
-  // //! Use students/:id for Student Profile
-  // // studentProfile: require("../controllers/studentProfile.controller"),
+  updateContactNo: require("../controllers/updateContactNumber.controller"),
 
-  // resetPassword: require("../controllers/reset-password.controller"),
+  companies: require("./companies.router.js"),
 
-  // updateContactNo: require("../controllers/updateContactNumber.controller"),
-
-  // companies: require("./companies.router.js"),
-
-  // students: require("./students.router.js"),
+  students: require("./students.router.js"),
 
   // Notification is handled by /profile
   // notification: require("../controllers/notification.controller")

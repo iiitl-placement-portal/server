@@ -68,19 +68,14 @@ app.get(
 app.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
-  (req,res,next) => {
-    if(req.body.role==="student") return next(routes.for_student.profile);
-    else next()
-  },
-  routes.for_tpo.profile
+  routes.profile
 );
 
-//! Use /students/:id for Student Profile.
-// app.get(
-//   "/studentProfile/:id",
-//   passport.authenticate("jwt", { session: false }),
-//   routes.studentProfile
-// );
+app.get(
+  "/studentProfile/:id",
+  passport.authenticate("jwt", { session: false }),
+  routes.studentProfile
+);
 
 app.get("/announcement", async (req, res) => {
   const data = await announcementModel.find({});
@@ -100,10 +95,7 @@ app.get("/announcement", async (req, res) => {
 app.get(
   "/reset-password",
   passport.authenticate("jwt", { session: false }),
-  (req,res,next) => {
-    if(req.body.role==="student") return next(routes.for_student.resetPassword);
-    else next()
-  }
+  routes.resetPassword
 );
 
 /* get request body example
@@ -112,39 +104,21 @@ app.get(
 app.get(
   "/update-phone-number",
   passport.authenticate("jwt", { session: false }),
-  (req,res,next) => {
-    if(req.body.role==="student") return next(routes.for_student.updateContactNo);
-    else next()
-  }
+  routes.updateContactNo
 );
 
-app.use(
-  "/jobs", 
-  passport.authenticate("jwt", { session: false }), 
-  (req,res,next) => {
-    if(req.body.role==="student") return next(routes.for_student.jobs);
-    else next()
-  },
-  routes.for_tpo.jobs
-);
+app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 
 app.use(
   "/companies",
   passport.authenticate("jwt", { session: false }),
-  (req,res,next) => {
-    if(req.body.role==="student") return next(routes.for_student.companies);
-    else next()
-  },
-  routes.for_tpo.companies
+  routes.companies
 );
 
 app.use(
   "/students",
   passport.authenticate("jwt", { session: false }),
-  (req,res,next) => {
-    if(req.body.role==="tpo") return next(routes.for_tpo.students);
-    else next()
-  }
+  routes.students
 );
 
 app.post("/uploadJsonData", uploadJsonData);
