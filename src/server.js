@@ -92,7 +92,7 @@ app.get("/announcement", async (req, res) => {
 /* get request body example
 { "password":"XYZ"} 
 */
-app.get(
+app.post(
   "/reset-password",
   passport.authenticate("jwt", { session: false }),
   routes.resetPassword
@@ -101,7 +101,7 @@ app.get(
 /* get request body example
 { "contactNo":"123XXXX"} 
 */
-app.get(
+app.post(
   "/update-phone-number",
   passport.authenticate("jwt", { session: false }),
   routes.updateContactNo
