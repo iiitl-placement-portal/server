@@ -14,6 +14,10 @@ module.exports = {
 
   updateContactNo: require("../controllers/updateContactNumber.controller"),
 
+  updateResume: require("../controllers/updateResume.controller"),
+
+  updateLinkedIn: require("../controllers/updateLinkedIn.controller"),
+
   companies: require("./companies.router.js"),
 
   students: require("./students.router.js"),
