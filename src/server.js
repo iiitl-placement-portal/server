@@ -107,6 +107,18 @@ app.post(
   routes.updateContactNo
 );
 
+app.post(
+  "/update-resume-link",
+  passport.authenticate("jwt", { session: false }),
+  routes.updateResume
+)
+
+app.post(
+  "/update-linked-url",
+  passport.authenticate("jwt", { session: false }),
+  routes.updateLinkedIn
+)
+
 app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 
 app.use(
