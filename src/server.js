@@ -27,13 +27,14 @@ const app = express();
 // /////////////////////    CORS    /////////////////////////////////////////
 // ! DO NOT CHANGE ANYTHING HERE
 //
-// allow all cross-origin requests
+// to allow all cross-origin requests, use
 // app.use(cors());
 //
-// allow cors only for localhost:3000
+// to allow cors for selected origins, use
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    // use JSON.parse to convert the string received from process.env to required JavaScript format (array)
+    origin: JSON.parse(process.env.ALLOWED_ORIGINS),
     optionsSuccessStatus: 200,
   })
 );
