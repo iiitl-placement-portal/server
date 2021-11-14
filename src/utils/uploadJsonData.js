@@ -2,6 +2,7 @@ const CompanyModel = require("../database/models/company.model");
 const StudentModel = require("../database/models/student.model");
 const JobModel = require("../database/models/job.model");
 const NotificationModel= require("../database/models/notification.model");
+const announcementModel = require("../database/models/announcement.model");
 
 const uploadJsonData = async (req, res, next) => {
   try {
@@ -23,6 +24,9 @@ const uploadJsonData = async (req, res, next) => {
       queryOn = "jobId";
     } else if (req.body.type === "notification") {
       Model = NotificationModel;
+      queryOn = "message";
+    } else if (req.body.type === "announcement") {
+      Model = announcementModel;
       queryOn = "message";
     }
 
