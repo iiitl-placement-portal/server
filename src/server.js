@@ -112,13 +112,13 @@ app.post(
   "/update-resume-link",
   passport.authenticate("jwt", { session: false }),
   routes.updateResume
-)
+);
 
 app.post(
   "/update-linked-url",
   passport.authenticate("jwt", { session: false }),
   routes.updateLinkedIn
-)
+);
 
 app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 
@@ -134,8 +134,32 @@ app.use(
   routes.students
 );
 
-app.post("/uploadJsonData", uploadJsonData);
-app.post("/deleteAllData", deleteAllData);
+app.post(
+  "/tpo/uploadJsonData",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    req.user.email === "placements@iiitl.ac.in"
+      ? uploadJsonData(req, res, next)
+      : next({
+          name: "Unauthorized request",
+          message: "This request is only authorized for the TPO",
+          status : 401
+        });
+  }
+);
+app.post(
+  "/tpo/deleteAllData",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    req.user.email === "placements@iiitl.ac.in"
+      ? deleteAllData(req, res, next)
+      : next({
+          name: "Unauthorized request",
+          message: "This request is only authorized for the TPO",
+          status: 401
+        });
+  }
+);
 
 app.post(
   "/markAsRead",
@@ -154,7 +178,7 @@ app.post(
 // Handle errors.
 app.use(function (err, req, res, next) {
   // console.log(req)
-  console.error(">ERROR", err.name, err.message);
+  console.error(">ERROR", err.name, ": ", err.message);
   res.status(err.status || 500);
   res.json({ error: err });
 });
