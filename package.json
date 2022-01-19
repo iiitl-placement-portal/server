@@ -4,7 +4,8 @@
   "description": "Repository to hold server code for Placement Portal Website of IIIT Lucknow",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "RDT",
