@@ -1,6 +1,6 @@
 module.exports = {
   // test route
-  // test: require("./test.router"),
+  test: require("./test.router"),
 
   login: require("../controllers/login.controller"),
 
