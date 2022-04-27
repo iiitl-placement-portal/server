@@ -17,14 +17,12 @@ const startServer = async () => {
   try {
     await connectToDB();
     console.log("Database Connected.");
-    process.env.DB = "CONNECTED";
   } catch (err) {
     // console.log(err);
     console.log(">ERROR :", err.name);
     console.log(">Error Message :", err.message);
     console.log(">Error Code :", err.code ? err.code : 0);
     console.log(">Error CodeName :", err.codeName ? err.codeName : "null");
-    process.env.DB = "DISCONNECTED";
   }
 };
 

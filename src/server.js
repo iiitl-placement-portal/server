@@ -55,6 +55,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // //////////////////////////////    ROUTES   ////////////////////////////////
 
+// if database is not connected, throw error
 app.use(function (req, res, next) {
   // mongoose.connection.readyState is
   // 0 = disconnected
@@ -106,34 +107,10 @@ app.get("/announcement", async (req, res) => {
 //   routes.notification
 // );
 
-/* get request body example
-{ "password":"XYZ"} 
-*/
-app.post(
-  "/reset-password",
+app.use(
+  "/update",
   passport.authenticate("jwt", { session: false }),
-  routes.resetPassword
-);
-
-/* get request body example
-{ "contactNo":"123XXXX"} 
-*/
-app.post(
-  "/update-phone-number",
-  passport.authenticate("jwt", { session: false }),
-  routes.updateContactNo
-);
-
-app.post(
-  "/update-resume-link",
-  passport.authenticate("jwt", { session: false }),
-  routes.updateResume
-);
-
-app.post(
-  "/update-linked-url",
-  passport.authenticate("jwt", { session: false }),
-  routes.updateLinkedIn
+  routes.update
 );
 
 app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
