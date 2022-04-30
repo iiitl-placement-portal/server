@@ -2,30 +2,32 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CompanySchema = new Schema({
-	//Company
-	companyName: {
-		type: String,
-		required: true,
-	},
-	companyWebsite: {
-		type: String,
-	},
-	industrySector: {
-		type: String,
-	},
-	aboutCompany: {
-		type: String,
-	},
-	linkedIn:{
-		type: String,
-	},
+  //Company
+  companyName: {
+    type: String,
+    required: true,
+  },
+  companyWebsite: {
+    type: String,
+  },
+  industrySector: {
+    type: String,
+  },
+  aboutCompany: {
+    type: String,
+  },
+  linkedIn: {
+    type: String,
+  },
 
-	//TODO: Use array instead of String for one to many relations
-	//TODO: at a later stage of development
-	jobOpenings: [{
-		type: Schema.Types.ObjectId,
-		ref: "JobOffer"
-	}]
+  //TODO: Use array instead of String for one to many relations
+  //TODO: at a later stage of development
+  jobOpenings: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "JobOffer",
+    },
+  ],
 });
 
 // create company model

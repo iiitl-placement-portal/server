@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TestSchema = new Schema({
-  test1: String,
-  test2: String,
-  test3: Number,
+  test: Boolean,
 });
 
 // create test model
