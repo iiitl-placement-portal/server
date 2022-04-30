@@ -99,7 +99,7 @@ const jobPostingSchema = new Schema({
   },
 
   evaluationPattern: {
-    type: string,
+    type: String,
   },
 
   // registration deadline
