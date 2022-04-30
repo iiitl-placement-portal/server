@@ -10,15 +10,30 @@ const jobPostingSchema = new Schema({
 	},
 
 	// Details of the comapany the job is posted by
+	// TODO -: Remove company
 	company: {
 		type: Schema.Types.ObjectId,
 		ref: "Companie"
+	},
+
+	companyName: {
+		type: String,
+		required: true
+	},
+
+	aboutcompany: {
+		type: String,
+	},
+
+	idealCandidate: {
+		type: String
 	},
 
 	expectedSkills:{
 		type: String
 	},
 
+	// key responsibilities
 	yourRole: {
 		type: String
 	},
@@ -27,10 +42,12 @@ const jobPostingSchema = new Schema({
 	jobDescription: {
 		type: String
 	},
+
 	// Intern/Full
 	recruitmentType: {
 		type: String
 	},
+
 	duration: {
 		type: String
 	},
@@ -39,28 +56,46 @@ const jobPostingSchema = new Schema({
 	postingLocation: {
 		type: String
 	},
+
 	active: {
 		type: String,
 		default: true
 	},
 
 	//Student Eligibility
+	// TODO -: remove eligibility as everything is checked separately
 	eligibility: [{
 		type: Number
 	}],
+
 	onlyForFemales: {
 		type: Boolean
 	},
+
 	minCgpa: {
 		type: String   //TODO: convert float
 	},
+
 	maxBacklogsAllowed: {
 		type: String
 	},
 
+	// passout in year 2023, 2024, 2025..
+	batchesAllowed: [{
+		type: Number
+	}],
+
 	//Package
 	package: {
+		type: Number
+	},
+
+	packageBreakup: {
 		type: String
+	},
+
+	evaluationPattern: {
+		type: string
 	},
 
 	// registration deadline
@@ -68,37 +103,34 @@ const jobPostingSchema = new Schema({
 		type: Date,
 		required: true
 	},
+
 	jobId: {
 		type: String,
 		required: true,
 		unique: true
 	},
+
 	// Array of Students applied
 	//! Populate with details of students
 	//? Lookup how to post references
 	studentsApplied: [{
 		type: Schema.Types.ObjectId,
 		ref: "Student"
-	}]
+	}],
+
+	// Array of students accepted for job
+	studentsAccepted: [{
+		type: Schema.Types.ObjectId,
+		ref: "Student"
+	}],
+
+	easyApply: {
+		type: Boolean,
+		default: false
+	}
 });
-
-jobPostingSchema.pre("findOneAndUpdate", async function () {
-	//code for auto increment of counter in jobId
-
-	/*
-	  console.log("pre hook", user);
-	const hash = await bcrypt.hash(user._update.password, 10);
-	//   console.log(hash);
-	user._update.password = hash;
-	//   console.log("pre hook done", user);
-	*/
-});
-
 
 const jobModel = mongoose.model("JobOffer", jobPostingSchema);
 // Collection named JobOffer[s]
 
 module.exports = jobModel;
-
-//TODO: Connect this model with the announcement model to create a model
-//TODO: everytime a job is posted.
