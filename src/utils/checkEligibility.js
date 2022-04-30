@@ -10,6 +10,9 @@ module.exports = (job, student) => {
   } else if (student.cgpa < job.minCgpa) {
     elig = false;
     reason = "CGPA Criteria";
+  } else if (!job.batchesAllowed.includes(student.passoutBatch)) {
+    elig = false;
+    reason = "Not for batch " + student.passoutBatch;
   } else if (job.isApplied) {
     elig = false;
     reason = "Already Applied";
