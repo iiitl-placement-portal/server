@@ -1,11 +1,16 @@
+const passport = require("passport");
 const router = require("express").Router();
-const testRoutesMw = require("../middlewares/test");
 
 router.get("/", (req, res) => {
-  res.send("nothing to send here too.");
+  res.status(200).send({ message: "works fine" });
 });
-router.get("/view", testRoutesMw.viewMw);
-router.post("/create", testRoutesMw.createMw);
+router.get(
+  "/auth",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.status(200).send({ message: "auth works fine" });
+  }
+);
 
 // TODO task for now
 // router.delete("/delete", testRoutesMw.deleteMw);

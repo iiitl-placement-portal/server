@@ -5,12 +5,14 @@ const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
 const passport = require("passport");
+const mongoose = require("mongoose");
 // ------------------------------------------------------------------------
 //
 // import required created files
 const routes = require("./routers");
 const uploadJsonData = require("./utils/uploadJsonData");
 const deleteAllData = require("./utils/deleteAllCollection");
+const fulfillWithTimeLimit = require("./utils/fulfillPromiseInTime");
 
 // to be removed later
 const announcementModel = require("./database/models/announcement.model");
@@ -53,8 +55,23 @@ app.use(express.urlencoded({ extended: true }));
 
 // //////////////////////////////    ROUTES   ////////////////////////////////
 
+// if database is not connected, throw error
+app.use(function (req, res, next) {
+  // mongoose.connection.readyState is
+  // 0 = disconnected
+  // 1 = connected
+  // 2 = connecting
+  // 3 = disconnecting
+  if (mongoose.connection.readyState === 1) {
+    next();
+  } else {
+    res.status(500);
+    res.json({ error: "Internal Server Error" });
+  }
+});
+
 // test route
-// app.use("/test", passport.authenticate("jwt", { session: false }), routes.test);
+app.use("/test", routes.test);
 
 // login the user
 app.post("/login", routes.login);
@@ -90,34 +107,10 @@ app.get("/announcement", async (req, res) => {
 //   routes.notification
 // );
 
-/* get request body example
-{ "password":"XYZ"} 
-*/
-app.post(
-  "/reset-password",
+app.use(
+  "/update",
   passport.authenticate("jwt", { session: false }),
-  routes.resetPassword
-);
-
-/* get request body example
-{ "contactNo":"123XXXX"} 
-*/
-app.post(
-  "/update-phone-number",
-  passport.authenticate("jwt", { session: false }),
-  routes.updateContactNo
-);
-
-app.post(
-  "/update-resume-link",
-  passport.authenticate("jwt", { session: false }),
-  routes.updateResume
-);
-
-app.post(
-  "/update-linked-url",
-  passport.authenticate("jwt", { session: false }),
-  routes.updateLinkedIn
+  routes.update
 );
 
 app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
@@ -143,7 +136,7 @@ app.post(
       : next({
           name: "Unauthorized request",
           message: "This request is only authorized for the TPO",
-          status : 401
+          status: 401,
         });
   }
 );
@@ -156,7 +149,7 @@ app.post(
       : next({
           name: "Unauthorized request",
           message: "This request is only authorized for the TPO",
-          status: 401
+          status: 401,
         });
   }
 );

@@ -3,133 +3,133 @@ const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
 const StudentSchema = new Schema({
-	fullName: {
-		type: String,
-		required: true,
-	},
-	
-	//Enrollment number
-	enrollmentNumber: {
-		type: String,
-		required: true,
-	},
-	
-	//year of passout
-	passoutBatch: {
-		type: String,
-		required: true,
-	},
-	// Gender
-	gender: {
-		type: String,
-		required: true,
-	},
-	//branch
-	program: {
-		type: String,
-		required: true,
-	},
-	contactNo: {
-		type: String,
-		required: true,
-	},
-	// email to contact(generally personal Email)
-	email: {
-		type: String,
-		unique: true,
-	},
-	password: {
-		type: String,
-		required: true,
-	},
-	cgpa: {
-		type: Number,
-		required: true,
-	},
-	sgpa: [
-		{
-			type: Number,
-			default: -1,
-		},
-	],
+  fullName: {
+    type: String,
+    required: true,
+  },
 
-	// for number of backlogs of the student
-	backlogs: {
-		type: Number,
-		default: 0
-	},
-	
-	// address: {
-	//     type: String,
-	// },
-	city: {
-		type: String,
-	},
-	postCode: {
-		type: String,
-	},
-	state: {
-		type: String,
-	},
-	country: {
-		type: String,
-	},
-	linkedlnURL: {
-		type: String,
-		required: true,
-	},
-	resumeUrl: {
-		type: String,
-	},
-	
-	approvedByTPO: {
-		type: Boolean,
-		default: true,
-		required: true
-	},
+  //Enrollment number
+  enrollmentNumber: {
+    type: String,
+    required: true,
+  },
 
-	jobApplied: [
-		{
-			type: Schema.Types.ObjectId,
-			ref: "JobOffer",
-		},
-	],
-	
-	offersReceived: [
-		{
-			type: Schema.Types.ObjectId,
-			ref: "JobsReceived",
-		},
-	],
-	notification: [
-		{
-			iat: {
-				type: Date,
-				required: true,
-				default: Date.now
-			},
-			exp: {
-				type: Date,
-				required: true,
-				default: () => Date.now() + 7*24*60*60*1000
-			},
-			message: {
-				type: String
-			}
-		}
-	],
-	readNotifications : [
-		{
-			iat: {
-				type: Date,
-				required: true,
-				default: Date.now
-			},
-			message: {
-				type: String
-			}
-		}
-	]
+  //year of passout
+  passoutBatch: {
+    type: String,
+    required: true,
+  },
+  // Gender
+  gender: {
+    type: String,
+    required: true,
+  },
+  //branch
+  program: {
+    type: String,
+    required: true,
+  },
+  contactNo: {
+    type: String,
+    required: true,
+  },
+  // email to contact(generally personal Email)
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  cgpa: {
+    type: Number,
+    required: true,
+  },
+  sgpa: [
+    {
+      type: Number,
+      default: -1,
+    },
+  ],
+
+  // for number of backlogs of the student
+  backlogs: {
+    type: Number,
+    default: 0,
+  },
+
+  // address: {
+  //     type: String,
+  // },
+  city: {
+    type: String,
+  },
+  postCode: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
+  linkedlnURL: {
+    type: String,
+    required: true,
+  },
+  resumeUrl: {
+    type: String,
+  },
+
+  approvedByTPO: {
+    type: Boolean,
+    default: true,
+    required: true,
+  },
+
+  jobApplied: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "JobOffer",
+    },
+  ],
+
+  offersReceived: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "JobsReceived",
+    },
+  ],
+  notification: [
+    {
+      iat: {
+        type: Date,
+        required: true,
+        default: Date.now,
+      },
+      exp: {
+        type: Date,
+        required: true,
+        default: () => Date.now() + 7 * 24 * 60 * 60 * 1000,
+      },
+      message: {
+        type: String,
+      },
+    },
+  ],
+  readNotifications: [
+    {
+      iat: {
+        type: Date,
+        required: true,
+        default: Date.now,
+      },
+      message: {
+        type: String,
+      },
+    },
+  ],
 });
 
 // The code in the UserScheme.pre() function is called a pre-hook.
@@ -149,10 +149,10 @@ const StudentSchema = new Schema({
 // It will return true if there is a match.
 // Otherwise, it will return false if there is not a match.
 StudentSchema.methods.isValidPassword = async function (password) {
-	const user = this;
-	const compare = await bcrypt.compare(password, user.password);
+  const user = this;
+  const compare = await bcrypt.compare(password, user.password);
 
-	return compare;
+  return compare;
 };
 
 // create student model

@@ -1,18 +1,14 @@
 const mongoose = require("mongoose");
 const { mongoUri, configObj, dbStreamsHandler } = require("./dbConfig");
 
-const connectToDB = () => {
+const connectToDB = async () => {
   // connect to DB and pass custom configuration
-  mongoose.connect(mongoUri, configObj);
-
-  // connection status
-  const db = mongoose.connection;
-  // read connection strems
-  db.on("error", dbStreamsHandler.error);
-  db.on("open", dbStreamsHandler.open);
-
-  // to avoid console message: 'DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.'
-  mongoose.set("useCreateIndex", true);
+  try {
+    await mongoose.connect(mongoUri, configObj);
+  } catch (err) {
+    console.log("Error in connecting to database:");
+    throw err;
+  }
 };
 
 module.exports = { connectToDB };

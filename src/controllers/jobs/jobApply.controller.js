@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
   let job = await JobModel.findById(jobId).populate("company");
 
   try {
-    const found = student.jobApplied.find((x) => x == jobId);
+    const found = student.jobApplied.find(x => x == jobId);
     if (!found) {
       await student.jobApplied.push(jobId);
       const notification = {
@@ -24,12 +24,12 @@ module.exports = async (req, res, next) => {
           job.company.companyName
         } on ${DateTime.now().toLocaleString()}`,
       };
+
       await student.notification.unshift(notification);
       await job.studentsApplied.push(studentId);
+      await StudentModel.findByIdAndUpdate(studentId, student);
+      await JobModel.findByIdAndUpdate(jobId, job);
     }
-
-    await StudentModel.findByIdAndUpdate(studentId, student);
-    await JobModel.findByIdAndUpdate(jobId, job);
 
     res.send({ isApplied: "applied" });
   } catch (err) {
