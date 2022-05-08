@@ -71,7 +71,7 @@ app.use(function (req, res, next) {
 
 // test route
 app.use("/test", routes.test);
-
+ 
 // login the user
 app.post("/login", routes.login);
 app.get(
@@ -100,12 +100,6 @@ app.get("/announcement", async (req, res) => {
   res.json(data);
 });
 
-// Calling notifications using /profile
-// app.get("/notification",
-//   passport.authenticate("jwt", { session: false }),
-//   routes.notification
-// );
-
 app.use(
   "/update",
   passport.authenticate("jwt", { session: false }),
@@ -113,6 +107,12 @@ app.use(
 );
 
 app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
+
+// Calling notifications using /profile
+// app.get("/notification",
+//   passport.authenticate("jwt", { session: false }),
+//   routes.notification
+// );
 
 // app.use(
 //   "/companies",

@@ -44,9 +44,9 @@ const uploadJsonData = async (req, res, next) => {
 
         const result = await Model.findOneAndUpdate(query, update, options);
         // console.log("result", result);
-        if (result) count++;
+        if (result) successCount++;
       } catch (err) {
-        console.log("Error in updating/adding " + queryOn, update);
+        console.log("Error in updating/adding " + queryOn, entry);
         console.error(err);
         failCount++;
       }

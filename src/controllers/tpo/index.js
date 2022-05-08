@@ -6,4 +6,6 @@ module.exports = {
   queries: require("./getQueries.controller"),
   answerQuery: require("./answerQuery.controller"),
   addAnnouncement: require("./addAnnouncement.controller"),
+  addNotification: require("./addNotification.controller"),
 };
+

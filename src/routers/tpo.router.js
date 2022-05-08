@@ -12,5 +12,7 @@ router.post("/answer-query/:id", tpo.answerQuery);
 router.post("/add-announcement", tpo.addAnnouncement);
 router.post("/uploadjsondata", uploadJsonData);
 router.post("/deleteAllData", deleteAllData);
+router.post("/add-notification",tpo.addNotification);
+
 
 module.exports = router;

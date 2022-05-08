@@ -74,12 +74,18 @@ const StudentSchema = new Schema({
   country: {
     type: String,
   },
-  linkedlnURL: {
+  linkedInURL: {
     type: String,
     required: true,
   },
   resumeUrl: {
     type: String,
+  },
+  
+  placed:{
+    type: Boolean,
+    default: false,
+    required: true,
   },
 
   approvedByTPO: {
