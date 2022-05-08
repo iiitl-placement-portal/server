@@ -3,4 +3,5 @@ module.exports = {
     id: require("./studentId.controller"),
     restrict: require("./studentRestrict.controller"),
     approve: require("./studentApprove.controller"),
+    askQuery: require("./askQuery.controller"),
   };

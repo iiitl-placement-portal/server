@@ -10,13 +10,12 @@ const mongoose = require("mongoose");
 //
 // import required created files
 const routes = require("./routers");
-const uploadJsonData = require("./utils/uploadJsonData");
-const deleteAllData = require("./utils/deleteAllCollection");
 const fulfillWithTimeLimit = require("./utils/fulfillPromiseInTime");
 
 // to be removed later
 const announcementModel = require("./database/models/announcement.model");
-// const addNewCompany = require("./utils/addNewCompany");
+const PendingJobModel= require("./database/models/pendingjob.model");
+//const addNewCompany = require("./utils/addNewCompany");
 const addNewJob = require("./utils/addNewJob");
 const {
   markAsRead,
@@ -121,38 +120,55 @@ app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 //   routes.companies
 // );
 
+app.post("/add-job",routes.jobrequest);
+
 app.use(
   "/students",
   passport.authenticate("jwt", { session: false }),
   routes.students
 );
 
-app.post(
-  "/tpo/uploadJsonData",
+app.use(
+  "/tpo",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
-    req.user.email === "placements@iiitl.ac.in"
-      ? uploadJsonData(req, res, next)
-      : next({
-          name: "Unauthorized request",
-          message: "This request is only authorized for the TPO",
-          status: 401,
-        });
-  }
-);
-app.post(
-  "/tpo/deleteAllData",
-  passport.authenticate("jwt", { session: false }),
-  (req, res, next) => {
-    req.user.email === "placements@iiitl.ac.in"
-      ? deleteAllData(req, res, next)
-      : next({
-          name: "Unauthorized request",
-          message: "This request is only authorized for the TPO",
-          status: 401,
-        });
-  }
-);
+    if (req.user.email !== "placements@iiitl.ac.in") {
+      next({
+            name: "Unauthorized request",
+            message: "This request is only authorized for the TPO",
+            status: 401,
+          }, req, res);
+    } else next()
+  },
+  routes.tpo
+)
+
+// app.post(
+//   "/tpo/uploadjsondata",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res, next) => {
+//     req.user.email === "placements@iiitl.ac.in"
+//       ? uploadJsonData(req, res, next)
+//       : next({
+//           name: "Unauthorized request",
+//           message: "This request is only authorized for the TPO",
+//           status: 401,
+//         });
+//   }
+// );
+// app.post(
+//   "/tpo/deleteAllData",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res, next) => {
+//     req.user.email === "placements@iiitl.ac.in"
+//       ? deleteAllData(req, res, next)
+//       : next({
+//           name: "Unauthorized request",
+//           message: "This request is only authorized for the TPO",
+//           status: 401,
+//         });
+//   }
+// );
 
 app.post(
   "/markAsRead",

@@ -2,6 +2,8 @@ module.exports = {
   // test route
   test: require("./test.router"),
 
+  tpo: require("./tpo.router"),
+
   jobs: require("./jobs.router"),
 
   update: require("./update.router.js"),
@@ -15,6 +17,8 @@ module.exports = {
   profile: require("../controllers/profile.controller"),
 
   studentProfile: require("../controllers/studentProfile.controller"),
+
+  jobrequest: require("../controllers/addJobRequest.controller"),
 
   // Notification is handled by /profile
   // notification: require("../controllers/notification.controller")
