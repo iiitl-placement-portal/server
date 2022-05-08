@@ -16,7 +16,7 @@ const fulfillWithTimeLimit = require("./utils/fulfillPromiseInTime");
 
 // to be removed later
 const announcementModel = require("./database/models/announcement.model");
-const addNewCompany = require("./utils/addNewCompany");
+// const addNewCompany = require("./utils/addNewCompany");
 const addNewJob = require("./utils/addNewJob");
 const {
   markAsRead,
@@ -115,11 +115,11 @@ app.use(
 
 app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 
-app.use(
-  "/companies",
-  passport.authenticate("jwt", { session: false }),
-  routes.companies
-);
+// app.use(
+//   "/companies",
+//   passport.authenticate("jwt", { session: false }),
+//   routes.companies
+// );
 
 app.use(
   "/students",

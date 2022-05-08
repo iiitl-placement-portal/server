@@ -1,16 +1,17 @@
 module.exports = (JobArray) => {
     const job = JobArray.map(x => {
         return {
-            _id: x._id,
-            active: x.active,
-            jobDescription: x.jobDescription,
-            recruitmentType: x.recruitmentType,
-            eligibility: x.eligibility,
-            companyName: x.company.companyName,
-            industrySector: x.company.industrySector,
-            package: x.package,
-
-        }
+          _id: x._id,
+          active: x.active,
+          jobDescription: x.jobDescription,
+          recruitmentType: x.recruitmentType,
+          companyName: x.companyName,
+          package: x.package,
+          minCgpa: x.minCgpa,
+          maxBacklogsAllowed: x.maxBacklogsAllowed,
+          batchesAllowed: x.batchesAllowed,
+          onlyForFemales: x.onlyForFemales,
+        };
     })
     return job;
 };

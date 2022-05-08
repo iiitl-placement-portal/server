@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const CompanyModel = require("./company.model");
 
 const jobPostingSchema = new Schema({
   timestamp: {
@@ -9,23 +8,20 @@ const jobPostingSchema = new Schema({
     default: Date.now,
   },
 
-  // Details of the comapany the job is posted by
-  // TODO -: Remove company
-  company: {
-    type: Schema.Types.ObjectId,
-    ref: "Companie",
-  },
-
   companyName: {
     type: String,
     required: true,
   },
 
-  aboutcompany: {
+  companyWebsite: {
     type: String,
   },
 
-  idealCandidate: {
+  aboutCompany: {
+    type: String,
+  },
+
+  qualification: {
     type: String,
   },
 
@@ -33,8 +29,8 @@ const jobPostingSchema = new Schema({
     type: String,
   },
 
-  // key responsibilities
-  yourRole: {
+  // SDE / Analyst / Consultant
+  jobRole: {
     type: String,
   },
 
@@ -58,28 +54,23 @@ const jobPostingSchema = new Schema({
   },
 
   active: {
-    type: String,
+    type: Boolean,
     default: true,
   },
 
-  //Student Eligibility
-  // TODO -: remove eligibility as everything is checked separately
-  eligibility: [
-    {
-      type: Number,
-    },
-  ],
-
   onlyForFemales: {
     type: Boolean,
+    default: false,
   },
 
   minCgpa: {
-    type: String, //TODO: convert float
+    type: Number,
+    default: 0,
   },
 
   maxBacklogsAllowed: {
-    type: String,
+    type: Number,
+    default: 100,
   },
 
   // passout in year 2023, 2024, 2025..
@@ -89,7 +80,7 @@ const jobPostingSchema = new Schema({
     },
   ],
 
-  //Package
+  //Package in LPA
   package: {
     type: Number,
   },

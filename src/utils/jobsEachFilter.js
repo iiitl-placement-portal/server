@@ -4,9 +4,7 @@ module.exports = (job) => {
         active: job.active,
         jobDescription: job.jobDescription,
         recruitmentType: job.recruitmentType,
-        eligibility: job.eligibility,
-        companyName: job.company.companyName,
-        industrySector: job.company.industrySector,
+        companyName: job.companyName,
         package: job.package,
         isElig: job.isElig
     }

@@ -1,7 +1,7 @@
-const CompanyModel = require("../database/models/company.model");
+// const CompanyModel = require("../database/models/company.model");
 const StudentModel = require("../database/models/student.model");
 const JobModel = require("../database/models/job.model");
-const NotificationModel= require("../database/models/notification.model");
+const NotificationModel = require("../database/models/notification.model");
 const announcementModel = require("../database/models/announcement.model");
 
 const uploadJsonData = async (req, res, next) => {
@@ -13,10 +13,7 @@ const uploadJsonData = async (req, res, next) => {
     let queryOn;
     const options = { upsert: true, new: true, setDefaultsOnInsert: true };
 
-    if (req.body.type === "company") {
-      Model = CompanyModel;
-      queryOn = "companyName";
-    } else if (req.body.type === "student") {
+    if (req.body.type === "student") {
       Model = StudentModel;
       queryOn = "email";
     } else if (req.body.type === "job") {
@@ -30,21 +27,31 @@ const uploadJsonData = async (req, res, next) => {
       queryOn = "message";
     }
 
-    await req.body.data.map(async (entry) => {
-      let newEntry = new Model(entry);
-      // console.log(newEntry);
+    let successCount = 0;
+    let failCount = 0;
 
-      const query = { [queryOn]: newEntry[queryOn] };
-      // console.log("query", query);
-      // const temp = await Model.findOne(query);
-      // console.log("temp", temp);
+    await req.body.data.map(async entry => {
+      try {
+        let newEntry = new Model(entry);
+        // console.log(newEntry);
 
-      const update = entry;
+        const query = { [queryOn]: newEntry[queryOn] };
+        // console.log("query", query);
+        // const temp = await Model.findOne(query);
+        // console.log("temp", temp);
 
-      const result = await Model.findOneAndUpdate(query, update, options);
-      // console.log("result", result);
+        const update = entry;
+
+        const result = await Model.findOneAndUpdate(query, update, options);
+        // console.log("result", result);
+        if (result) count++;
+      } catch (err) {
+        console.log("Error in updating/adding " + queryOn, update);
+        console.error(err);
+        failCount++;
+      }
     });
-    res.status(200).send("OK");
+    res.status(200).send({ successCount, failCount });
   } catch (err) {
     next(err);
   }

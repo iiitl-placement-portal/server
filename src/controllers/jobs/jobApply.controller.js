@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
   // console.log(jobId);
 
   let student = await StudentModel.findById(studentId);
-  let job = await JobModel.findById(jobId).populate("company");
+  let job = await JobModel.findById(jobId);
 
   try {
     const found = student.jobApplied.find(x => x == jobId);
@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
         iat: DateTime.now().toLocaleString(),
         exp: DateTime.now().plus({ days: 10 }),
         message: `You applied for Job at ${
-          job.company.companyName
+          job.companyName
         } on ${DateTime.now().toLocaleString()}`,
       };
 
@@ -37,7 +37,7 @@ module.exports = async (req, res, next) => {
       iat: DateTime.now().toLocaleString(),
       exp: DateTime.now().plus({ days: 10 }),
       message: `You application process for Job at ${
-        job.company.companyName
+        job.companyName
       } on ${DateTime.now().toLocaleString()} failed.`,
     };
     student.notification.unshift(notification);

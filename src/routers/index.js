@@ -8,7 +8,7 @@ module.exports = {
 
   students: require("./students.router.js"),
 
-  companies: require("./companies.router.js"),
+  // companies: require("./companies.router.js"),
 
   login: require("../controllers/login.controller"),
 
