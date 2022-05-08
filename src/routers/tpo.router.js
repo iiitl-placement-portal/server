@@ -10,5 +10,6 @@ router.post("/deleteAllData",deleteAllData);
 router.delete("/rejectjob/:id",tpo.rejectjob);
 router.get("/queries",tpo.queries);
 router.post("/answer-query/:id",tpo.answerQuery);
+router.post("/add-notification",tpo.addNotification);
 
 module.exports = router;

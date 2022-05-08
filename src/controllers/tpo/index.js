@@ -4,4 +4,5 @@ module.exports = {
     getpendingjob: require("./getPendingJob.controller"),
     queries: require("./getQueries.controller"),
     answerQuery: require("./answerQuery.controller"),
+    addNotification: require("./addNotification.controller"),
   };
