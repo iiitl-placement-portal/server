@@ -9,6 +9,7 @@ router.get("/pendingjob/:id", tpo.getpendingjobbyid);
 router.post("/approvejob/:id", tpo.approvejob);
 router.delete("/rejectjob/:id", tpo.rejectjob);
 router.post("/answer-query/:id", tpo.answerQuery);
+router.post("/add-announcement", tpo.addAnnouncement);
 router.post("/uploadjsondata", uploadJsonData);
 router.post("/deleteAllData", deleteAllData);
 
