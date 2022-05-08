@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const CompanyModel = require("./company.model");
 
-const jobPostingSchema = new Schema({
+const pendingJobSchema = new Schema({
   timestamp: {
     type: Date,
     required: true,
@@ -37,7 +38,7 @@ const jobPostingSchema = new Schema({
   yourRole:{
     type: String,
   },
-  
+
   // Description of the job
   jobDescription: {
     type: String,
@@ -108,32 +109,9 @@ const jobPostingSchema = new Schema({
     required: true,
     unique: true,
   },
-
-  // Array of Students applied
-  //! Populate with details of students
-  //? Lookup how to post references
-  studentsApplied: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Student",
-    },
-  ],
-
-  // Array of students accepted for job
-  studentsAccepted: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Student",
-    },
-  ],
-
-  easyApply: {
-    type: Boolean,
-    default: false,
-  },
 });
 
-const jobModel = mongoose.model("JobOffer", jobPostingSchema);
+const PendingJobModel = mongoose.model("PendingJob", pendingJobSchema);
 // Collection named JobOffer[s]
 
-module.exports = jobModel;
+module.exports = PendingJobModel;
