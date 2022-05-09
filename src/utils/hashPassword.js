@@ -2,15 +2,16 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const hash = async (plainText) => {
+const hashPassword = async plainText => {
   const hashedText = await bcrypt.hash(plainText, saltRounds);
-  console.log("hashedText", hashedText);
+  // console.log("hashedText", hashedText);
   return hashedText;
 };
 
-const args = process.argv[2]
-console.log("string to be hashed:",args);
+// const args = process.argv[2];
 
-hash(args);
-
-module.exports = hash;
+// if (args) {
+//   console.log("string to be hashed:", args);
+//   hash(args);
+// }
+module.exports = hashPassword;

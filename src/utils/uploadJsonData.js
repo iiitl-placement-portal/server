@@ -4,6 +4,8 @@ const JobModel = require("../database/models/job.model");
 const NotificationModel = require("../database/models/notification.model");
 const announcementModel = require("../database/models/announcement.model");
 
+const hashPassword = require("./hashPassword");
+
 const uploadJsonData = async (req, res, next) => {
   try {
     // console.log(req.body.type);
@@ -32,6 +34,10 @@ const uploadJsonData = async (req, res, next) => {
 
     await req.body.data.map(async entry => {
       try {
+        if (req.body.type === "student") {
+          entry.password = await hashPassword(entry.password);
+        }
+
         let newEntry = new Model(entry);
         // console.log(newEntry);
 
