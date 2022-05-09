@@ -14,7 +14,8 @@ const fulfillWithTimeLimit = require("./utils/fulfillPromiseInTime");
 
 // to be removed later
 const announcementModel = require("./database/models/announcement.model");
-const PendingJobModel= require("./database/models/pendingjob.model");
+const QueryModel = require("./database/models/queries.model");
+const PendingJobModel = require("./database/models/pendingjob.model");
 //const addNewCompany = require("./utils/addNewCompany");
 const addNewJob = require("./utils/addNewJob");
 const {
@@ -71,7 +72,7 @@ app.use(function (req, res, next) {
 
 // test route
 app.use("/test", routes.test);
- 
+
 // login the user
 app.post("/login", routes.login);
 app.get(
@@ -100,6 +101,12 @@ app.get("/announcement", async (req, res) => {
   res.json(data);
 });
 
+app.get("/all-query", async (req, res) => {
+  const data = await QueryModel.find({}).populate("askedBy");
+  res.status(200);
+  res.json(data);
+});
+
 app.use(
   "/update",
   passport.authenticate("jwt", { session: false }),
@@ -120,7 +127,7 @@ app.use("/jobs", passport.authenticate("jwt", { session: false }), routes.jobs);
 //   routes.companies
 // );
 
-app.post("/add-job",routes.jobrequest);
+app.post("/add-job", routes.jobrequest);
 
 app.use(
   "/students",
@@ -133,15 +140,19 @@ app.use(
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
     if (req.user.email !== "placements@iiitl.ac.in") {
-      next({
-            name: "Unauthorized request",
-            message: "This request is only authorized for the TPO",
-            status: 401,
-          }, req, res);
-    } else next()
+      next(
+        {
+          name: "Unauthorized request",
+          message: "This request is only authorized for the TPO",
+          status: 401,
+        },
+        req,
+        res
+      );
+    } else next();
   },
   routes.tpo
-)
+);
 
 // app.post(
 //   "/tpo/uploadjsondata",
