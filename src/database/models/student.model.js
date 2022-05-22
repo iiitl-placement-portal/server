@@ -81,8 +81,8 @@ const StudentSchema = new Schema({
   resumeUrl: {
     type: String,
   },
-  
-  placed:{
+
+  placed: {
     type: Boolean,
     default: false,
     required: true,
@@ -104,7 +104,7 @@ const StudentSchema = new Schema({
   offersReceived: [
     {
       type: Schema.Types.ObjectId,
-      ref: "JobsReceived",
+      ref: "JobOffer",
     },
   ],
   notification: [
