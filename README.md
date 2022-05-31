@@ -6,14 +6,18 @@ If not already installed, install `NodeJs` from [here](https://nodejs.org/en/dow
 
 Launch Terminal (Linux/Mac OS) or PowerShell (Windows) and paste the following code.
 
-> `git clone https://github.com/iiitl-placement-portal/server.git`
+```
+git clone https://github.com/iiitl-placement-portal/server.git
+```
 
 <br>
 
 This will create a folder named `server`.  
 Open the `server` folder in Terminal or PowerShell and run following command to install all dependencies required for the project to run.
 
-> `npm install`
+```
+npm install
+```
 
 <br>
 
@@ -37,7 +41,9 @@ ALLOWED_ORIGINS = ["http://localhost:3000", "https://iiitl-placement-portal.netl
 
 Launch a Terminal or PowerShell and run the following command from `server` directory
 
-> `npm run dev`
+```
+npm run dev
+```
 
 This will start the portal on `http://localhost:5000`.
 
